@@ -1,0 +1,86 @@
+
+syntax = "proto3";
+
+package com.lmsService.grpc;
+
+option java_multiple_files = true;
+
+
+message Book{
+  string name=2;
+  string title=3;
+  string genre=4;
+  int32 stock=5;
+}
+
+message BookRequest{
+  string id =1;
+  Book book=2;
+}
+
+message BookResponse{
+  string result = 1;
+  string name = 2;
+}
+
+message ErrorDetails{
+  string atrName=1;
+  string atrValue=2;
+  string error =3;
+}
+
+message ErrorResponse{
+  int32 code=1;
+  string status=2;
+  repeated ErrorDetails errorDetails=3;
+}
+
+message UserDetailsRequest{
+  string id=1;
+  string email=2;
+  string firstName=3;
+  string lastName=4;
+  string password=5;
+  string address=6;
+}
+
+message registerUserResponse{
+  string result=1;
+  string email=2;
+}
+
+message getAllBooksResponse{
+  repeated Book book=1;
+}
+
+message getAllBooksRequest{
+
+}
+
+message issueBookRequest{
+  int32 bookId =1;
+  int32 userId =2;
+}
+
+message issueBookResponse{
+  string result =1;
+}
+
+message returnBookRequest{
+  int32 bookId=1;
+  int32 userId=2;
+}
+
+message returnBookResponse{
+  string result=1;
+}
+
+service LmsService {
+  rpc addBook (BookRequest) returns (BookResponse) {}
+  rpc registerUser(UserDetailsRequest) returns (registerUserResponse){}
+  rpc getAllBooks(getAllBooksRequest) returns (getAllBooksResponse){}
+  rpc issueBook(issueBookRequest) returns (issueBookResponse){}
+  rpc returnBook(returnBookRequest) returns (returnBookResponse){}
+}
+
+

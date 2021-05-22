@@ -149,7 +149,7 @@ public class LmsDbOperations {
         if(rs.next()){
             checkUser = rs.getInt(1);
             if(checkUser==0){
-                System.out.println("invalid userId");
+                System.out.println("invalid userId please enter valid userId");
                 return;
             }
             else
